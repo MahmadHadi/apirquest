@@ -1,0 +1,49 @@
+{
+  "name": "apirquest",
+  "version": "1.0.0",
+  "description": "A terminal-based API testing and management tool — like Postman, but for the command line. Store, organize, and run HTTP requests without leaving your shell.",
+  "type": "module",
+  "bin": {
+    "apirquest": "./bin/apirquest.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node ./bin/apirquest.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "cli",
+    "api",
+    "rest",
+    "http",
+    "postman",
+    "terminal",
+    "testing",
+    "requests",
+    "developer-tools",
+    "curl"
+  ],
+  "author": "Mahmadhadi",
+  "license": "MIT",
+  "files": [
+    "bin",
+    "src",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MahmadHadi/apirquest.git"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "boxen": "^8.0.1",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^11.1.0",
+    "nanoid": "^5.0.7",
+    "ora": "^8.1.1"
+  }
+}
