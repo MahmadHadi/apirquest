@@ -1,6 +1,6 @@
 {
   "name": "apirquest",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A terminal-based API testing and management tool — like Postman, but for the command line. Store, organize, and run HTTP requests without leaving your shell.",
   "type": "module",
   "bin": {
