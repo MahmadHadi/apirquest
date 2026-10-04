@@ -1,19 +1,26 @@
 # apirquest
 
-A terminal-based API testing and management tool — like Postman, but for the command line. Save, organize, and run HTTP requests without leaving your shell. All data lives in plain JSON files on your machine; no database, no account, no cloud sync.
+A terminal-based API testing and management tool — like Postman, but for the command line. Save, organize, and run HTTP requests without leaving your shell.
+
+All data is stored locally in plain JSON files inside your project. No database, no account, and no cloud sync.
 
 ## Features
 
-- File-based storage — every request is its own JSON file under `~/.apirquest/`
+- **Project-local storage** — store API requests inside your project and share them through Git/GitHub
+- File-based storage — every request is stored as a JSON file
 - Interactive mode (menu-driven) **and** scriptable commands
 - Save request/response history, with automatic pruning
-- Environments with `{{VAR}}` interpolation (e.g. `{{BASE_URL}}/users`)
+- Environments with `{{VAR}}` interpolation
 - Export requests as `curl`, `fetch`, `axios`, or raw JSON
 - Import requests from a JSON file
-- Colorized, syntax-highlighted output; loading spinners for network calls
+- Colorized and syntax-highlighted output
+- Loading spinners for network calls
 - Works on Windows, macOS, and Linux
+- No database or cloud account required
 
 ## Installation
+
+Install globally with npm:
 
 ```bash
 npm install -g apirquest
@@ -25,7 +32,7 @@ Or run it without installing:
 npx apirquest
 ```
 
-## Quick start
+## Quick Start
 
 Run with no arguments to open the interactive menu:
 
@@ -36,7 +43,7 @@ apirquest
 Or use it non-interactively:
 
 ```bash
-# Add a request (walks you through prompts)
+# Add a request
 apirquest add
 
 # List everything you've saved
@@ -64,9 +71,36 @@ apirquest export <id> --format curl
 apirquest import ./my-request.json
 ```
 
+## Storage
+
+apirquest stores saved API requests **inside your project** using a `.apirquest/` directory.
+
+This makes your API collections part of the project and allows you to share them with your team through Git or GitHub.
+
+### Project Storage
+
+When you run apirquest inside a project, it uses the `.apirquest/` directory:
+
+```text
+your-project/
+├── .apirquest/
+│   ├── requests/
+│   ├── history/
+│   ├── environments/
+│   └── config.json
+├── src/
+└── package.json
+```
+
+If the `.apirquest/` directory does not exist, apirquest creates it when required.
+
+Because the API requests are stored inside the project, you can commit the `.apirquest/` directory to Git and share your API collection with other developers.
+
+> **Security:** Do not commit API keys, passwords, access tokens, or other sensitive information to GitHub. Use environment variables or other secure methods for sensitive values.
+
 ## Environments
 
-Store variables per environment and reference them in any request field with `{{VAR_NAME}}`:
+Store variables per environment and reference them in any request field using `{{VAR_NAME}}`:
 
 ```bash
 apirquest env set dev BASE_URL https://api.dev.example.com
@@ -77,23 +111,33 @@ apirquest env list
 apirquest env show dev
 ```
 
-Then in a request URL: `{{BASE_URL}}/users/{{USER_ID}}` — resolved automatically at run time against whichever environment is active.
+Then use variables in requests:
 
-## Where data lives
-
-```
-~/.apirquest/
-  ├── requests/            # one {id}.json file per saved request
-  ├── history/{id}/        # response snapshots per request
-  ├── environments/        # one {name}.json file per environment
-  └── config.json          # active environment, history limit, timeout
+```text
+{{BASE_URL}}/users/{{USER_ID}}
 ```
 
-Override the location with the `APIRQUEST_HOME` environment variable, or by creating a `.apirquest/` folder in your current project directory (apirquest prefers a local one if it already exists, otherwise falls back to your home directory).
+Variables are resolved automatically at runtime using the active environment.
+
+## Where Data Lives
+
+All apirquest project data is stored inside the `.apirquest/` directory:
+
+```text
+.apirquest/
+├── requests/             # one {id}.json file per saved request
+├── history/{id}/         # response snapshots per request
+├── environments/         # one {name}.json file per environment
+└── config.json           # active environment, history limit, timeout
+```
+
+Since the data is stored inside your project, you can version-control it with Git and share it through GitHub.
 
 ## Configuration
 
-Edit `~/.apirquest/config.json` directly, or let apirquest create it with defaults on first run:
+Edit the configuration file directly, or let apirquest create it with defaults on first run.
+
+Example:
 
 ```json
 {
@@ -103,9 +147,15 @@ Edit `~/.apirquest/config.json` directly, or let apirquest create it with defaul
 }
 ```
 
-## Request JSON format
+The configuration file is located at:
 
-Used by both `import` and the on-disk storage format:
+```text
+.apirquest/config.json
+```
+
+## Request JSON Format
+
+The following format is used by both `import` and the on-disk request storage:
 
 ```json
 {
@@ -113,34 +163,153 @@ Used by both `import` and the on-disk storage format:
   "title": "Get User Data",
   "url": "https://api.example.com/users/1",
   "method": "GET",
-  "headers": [{ "key": "Authorization", "value": "Bearer token" }],
-  "query": [{ "key": "limit", "value": "10" }],
+  "headers": [
+    {
+      "key": "Authorization",
+      "value": "Bearer token"
+    }
+  ],
+  "query": [
+    {
+      "key": "limit",
+      "value": "10"
+    }
+  ],
   "body": "",
   "createdAt": "2026-01-01T00:00:00.000Z",
   "updatedAt": "2026-01-01T00:00:00.000Z"
 }
 ```
 
+## Development
+
+Clone the repository:
+
+```bash
+git clone https://github.com/MahmadHadi/apirquest.git
+cd apirquest
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the project locally:
+
+```bash
+node bin/index.js
+```
+
+Or link it globally for development:
+
+```bash
+npm link
+```
+
+Then use:
+
+```bash
+apirquest
+```
+
+Check the version:
+
+```bash
+apirquest --version
+```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## Contributing
+
+apirquest is an open-source project and contributions are welcome.
+
+You can contribute by:
+
+- Reporting bugs
+- Suggesting new features
+- Improving documentation
+- Fixing issues
+- Adding new functionality
+- Reviewing or testing pull requests
+
+To contribute, fork the repository, create a branch for your changes, test your changes locally, and open a Pull Request.
+
+For detailed instructions, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Feedback
+
+If you use apirquest, feedback is highly appreciated.
+
+Please report bugs, suggest features, or share your experience through GitHub Issues.
+
+Repository:
+
+https://github.com/MahmadHadi/apirquest
+
+Issues:
+
+https://github.com/MahmadHadi/apirquest/issues
+
 ## Publishing to npm
 
-1. Update `name`, `version`, `author`, and `repository` in `package.json`. Check the name is available: `npm view apirquest` (a 404 means it's free).
-2. Log in: `npm login`
-3. From the project root: `npm publish`
-4. For future updates: bump the version (`npm version patch|minor|major`) and `npm publish` again.
+Before publishing, make sure the package information in `package.json` is correct.
 
-Test the global install locally before publishing:
+Log in to npm:
+
+```bash
+npm login
+```
+
+Publish the package:
+
+```bash
+npm publish
+```
+
+For future updates, bump the version and publish again.
+
+For a bug fix:
+
+```bash
+npm version patch
+npm publish
+```
+
+For a new feature:
+
+```bash
+npm version minor
+npm publish
+```
+
+For a breaking change:
+
+```bash
+npm version major
+npm publish
+```
+
+Test the package locally before publishing:
 
 ```bash
 npm link
 apirquest --help
-npm unlink -g apirquest   # when done testing
+```
+
+When finished testing:
+
+```bash
+npm unlink -g apirquest
 ```
 
 ## Requirements
 
-- Node.js 18 or later (uses native `fetch`-adjacent APIs and top-level ES modules; ships with `axios` for HTTP).
+- Node.js 18 or later
+- npm
 
 ## License
 
 MIT
-# apirquest
