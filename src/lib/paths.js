@@ -24,7 +24,9 @@ export function getRootDir() {
   return path.join(os.homedir(), '.apirquest');
 }
 
-export const ROOT_DIR = getRootDir();
+// export const ROOT_DIR = getRootDir();
+export const ROOT_DIR = "./";
+
 export const REQUESTS_DIR = path.join(ROOT_DIR, 'requests');
 export const HISTORY_DIR = path.join(ROOT_DIR, 'history');
 export const ENV_DIR = path.join(ROOT_DIR, 'environments');
