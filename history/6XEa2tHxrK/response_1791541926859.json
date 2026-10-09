@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-10-09T10:32:06.850Z",
+  "ok": true,
+  "status": 200,
+  "statusText": "OK",
+  "headers": {
+    "connection": "keep-alive",
+    "content-length": "721",
+    "content-type": "application/json; charset=utf-8",
+    "date": "Fri, 09 Oct 2026 10:32:06 GMT",
+    "etag": "W/\"2d1-4aAQwhErWRw7CUc1hlP90L6rxV0\"",
+    "keep-alive": "timeout=5",
+    "x-powered-by": "Express"
+  },
+  "data": {
+    "count": 4,
+    "data": [
+      {
+        "id": "1",
+        "name": "Learn Express",
+        "description": "Try a simple GET request.",
+        "createdAt": "2026-01-01T10:00:00.000Z",
+        "updatedAt": "2026-01-01T10:00:00.000Z"
+      },
+      {
+        "id": "2",
+        "name": "Test POST requests",
+        "description": "Create an item by sending JSON.",
+        "createdAt": "2026-01-02T10:00:00.000Z",
+        "updatedAt": "2026-01-02T10:00:00.000Z"
+      },
+      {
+        "id": "1a1ded28-6915-4bf5-9bcf-6e4bc84b26b3",
+        "name": "Test my API",
+        "description": "Created from a request client",
+        "createdAt": "2026-10-09T10:27:47.457Z",
+        "updatedAt": "2026-10-09T10:27:47.457Z"
+      },
+      {
+        "id": "d32d8195-5794-4b03-b3fd-8df760f7b368",
+        "name": "Test my API",
+        "description": "Created from a request client",
+        "createdAt": "2026-10-09T10:29:19.946Z",
+        "updatedAt": "2026-10-09T10:29:19.946Z"
+      }
+    ]
+  },
+  "durationMs": 20,
+  "requestedUrl": "http://localhost:3000/api/items",
+  "requestedMethod": "GET"
+}

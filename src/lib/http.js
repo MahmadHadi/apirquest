@@ -1,4 +1,3 @@
-import axios from 'axios';
 import fs from 'fs-extra';
 import { CONFIG_FILE } from './paths.js';
 import { resolveRequest } from './environment.js';
@@ -41,6 +40,7 @@ async function getTimeout() {
  * describing what happened either way (success or failure) rather than
  * throwing on non-2xx status codes.
  */
+
 export async function executeRequest(record) {
   const resolved = await resolveRequest(record);
   const headers = arrayToObject(resolved.headers);
@@ -50,22 +50,38 @@ export async function executeRequest(record) {
   const startedAt = Date.now();
 
   try {
-    const response = await axios({
-      url: resolved.url,
+    const url = new URL(resolved.url);
+
+    Object.entries(params).forEach(([key, value]) => {
+      if (value != null) {
+        url.searchParams.append(key, value);
+      }
+    });
+
+    const response = await fetch(url.toString(), {
       method: resolved.method,
       headers,
-      params,
-      data,
-      timeout,
-      validateStatus: () => true // we handle non-2xx ourselves, don't throw
+      body: data == null
+        ? undefined
+        : typeof data === "string"
+          ? data
+          : JSON.stringify(data),
+      signal: timeout > 0 ? AbortSignal.timeout(timeout) : undefined
     });
+
+    const contentType = response.headers.get("content-type") || "";
+    const responseData = response.status === 204 || response.status === 205
+      ? null
+      : contentType.includes("json")
+        ? await response.json()
+        : await response.text();
 
     return {
       ok: response.status >= 200 && response.status < 400,
       status: response.status,
       statusText: response.statusText,
-      headers: response.headers,
-      data: response.data,
+      headers: Object.fromEntries(response.headers.entries()),
+      data: responseData,
       durationMs: Date.now() - startedAt,
       requestedUrl: resolved.url,
       requestedMethod: resolved.method
@@ -73,18 +89,10 @@ export async function executeRequest(record) {
   } catch (err) {
     return {
       ok: false,
-      error: describeAxiosError(err),
+      error: err.message,
       durationMs: Date.now() - startedAt,
       requestedUrl: resolved.url,
       requestedMethod: resolved.method
     };
   }
-}
-
-function describeAxiosError(err) {
-  if (err.code === 'ECONNABORTED') return `Request timed out.`;
-  if (err.code === 'ENOTFOUND') return `Could not resolve host — check the URL.`;
-  if (err.code === 'ECONNREFUSED') return `Connection refused — is the server running?`;
-  if (err.code === 'ERR_INVALID_URL' || err instanceof TypeError) return `Invalid URL.`;
-  return err.message || 'Unknown network error.';
 }

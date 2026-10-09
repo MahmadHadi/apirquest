@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-10-09T10:32:14.246Z",
+  "ok": true,
+  "status": 200,
+  "statusText": "OK",
+  "headers": {
+    "connection": "keep-alive",
+    "content-length": "214",
+    "content-type": "application/json; charset=utf-8",
+    "date": "Fri, 09 Oct 2026 10:32:14 GMT",
+    "etag": "W/\"d6-7jYcAjD9YRoJIdcP9RWw7DujDu0\"",
+    "keep-alive": "timeout=5",
+    "x-powered-by": "Express"
+  },
+  "data": {
+    "message": "Item replaced",
+    "data": {
+      "id": "d32d8195-5794-4b03-b3fd-8df760f7b368",
+      "name": "Updated item",
+      "description": "Replaced with PUT",
+      "createdAt": "2026-10-09T10:29:19.946Z",
+      "updatedAt": "2026-10-09T10:32:14.229Z"
+    }
+  },
+  "durationMs": 36,
+  "requestedUrl": "http://localhost:3000/api/items/d32d8195-5794-4b03-b3fd-8df760f7b368",
+  "requestedMethod": "PUT"
+}

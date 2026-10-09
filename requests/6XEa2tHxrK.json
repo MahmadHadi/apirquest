@@ -1,0 +1,11 @@
+{
+  "id": "6XEa2tHxrK",
+  "title": "list-all-items",
+  "url": "http://localhost:3000/api/items",
+  "method": "GET",
+  "headers": [],
+  "query": [],
+  "body": "",
+  "createdAt": "2026-10-09T10:30:17.470Z",
+  "updatedAt": "2026-10-09T10:30:17.470Z"
+}

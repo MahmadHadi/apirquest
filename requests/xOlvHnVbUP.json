@@ -1,0 +1,11 @@
+{
+  "id": "xOlvHnVbUP",
+  "title": "delete-item",
+  "url": "http://localhost:3000/api/items/1a1ded28-6915-4bf5-9bcf-6e4bc84b26b3",
+  "method": "DELETE",
+  "headers": [],
+  "query": [],
+  "body": "",
+  "createdAt": "2026-10-09T10:33:58.469Z",
+  "updatedAt": "2026-10-09T10:33:58.469Z"
+}
