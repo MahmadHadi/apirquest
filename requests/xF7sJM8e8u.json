@@ -1,0 +1,16 @@
+{
+  "id": "xF7sJM8e8u",
+  "title": "add-item",
+  "url": "http://localhost:3000/api/items",
+  "method": "POST",
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "query": [],
+  "body": "{\"name\":\"Test my API\",\"description\":\"Created from a request client\"}\n",
+  "createdAt": "2026-10-09T10:29:13.352Z",
+  "updatedAt": "2026-10-09T10:29:13.352Z"
+}

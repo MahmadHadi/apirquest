@@ -1,0 +1,16 @@
+{
+  "id": "n5EEjTttG7",
+  "title": "update-item",
+  "url": "http://localhost:3000/api/items/d32d8195-5794-4b03-b3fd-8df760f7b368",
+  "method": "PUT",
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "query": [],
+  "body": "{\"name\":\"Updated item\",\"description\":\"Replaced with PUT\"}\n",
+  "createdAt": "2026-10-09T10:31:55.069Z",
+  "updatedAt": "2026-10-09T10:31:55.069Z"
+}

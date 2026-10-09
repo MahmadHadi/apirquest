@@ -1,0 +1,8 @@
+{
+  "timestamp": "2026-10-09T09:29:52.255Z",
+  "ok": false,
+  "error": "connect ETIMEDOUT 172.67.167.151:443; connect ENETUNREACH 2606:4700:3037::ac43:a797:443 - Local (:::0); connect ETIMEDOUT 104.21.59.19:443; connect ENETUNREACH 2606:4700:3033::6815:3b13:443 - Local (:::0)",
+  "durationMs": 631,
+  "requestedUrl": "https://jsonplaceholder.typicode.com/posts/1",
+  "requestedMethod": "GET"
+}

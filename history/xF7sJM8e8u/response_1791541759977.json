@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-10-09T10:29:19.973Z",
+  "ok": true,
+  "status": 201,
+  "statusText": "Created",
+  "headers": {
+    "connection": "keep-alive",
+    "content-length": "224",
+    "content-type": "application/json; charset=utf-8",
+    "date": "Fri, 09 Oct 2026 10:29:19 GMT",
+    "etag": "W/\"e0-FW/iIEwp8fqP2AW/+bGvyrBX3yQ\"",
+    "keep-alive": "timeout=5",
+    "x-powered-by": "Express"
+  },
+  "data": {
+    "message": "Item created",
+    "data": {
+      "id": "d32d8195-5794-4b03-b3fd-8df760f7b368",
+      "name": "Test my API",
+      "description": "Created from a request client",
+      "createdAt": "2026-10-09T10:29:19.946Z",
+      "updatedAt": "2026-10-09T10:29:19.946Z"
+    }
+  },
+  "durationMs": 27,
+  "requestedUrl": "http://localhost:3000/api/items",
+  "requestedMethod": "POST"
+}
