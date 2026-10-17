@@ -47,6 +47,7 @@ export async function startMenu() {
           { name: 'Edit a request', value: 'edit' },
           { name: 'Delete a request', value: 'delete' },
           { name: 'Export a request', value: 'export' },
+          { name: "Clear screen", value: "clear" },
           new inquirer.Separator(),
           { name: 'Quit', value: 'quit' }
         ]
@@ -96,6 +97,9 @@ export async function startMenu() {
           }
           break;
         }
+        case "clear":
+          console.clear();
+          break;
         case 'quit':
           running = false;
           break;

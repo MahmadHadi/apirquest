@@ -1,0 +1,8 @@
+{
+  "timestamp": "2026-10-17T10:51:52.906Z",
+  "ok": false,
+  "error": "fetch failed",
+  "durationMs": 193,
+  "requestedUrl": "http://localhost:3000/api/items",
+  "requestedMethod": "GET"
+}

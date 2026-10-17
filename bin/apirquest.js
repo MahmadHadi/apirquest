@@ -99,6 +99,13 @@ program
     await importCommand(file);
   });
 
+program
+  .command("clear")
+  .description("Clear the terminal screen")
+  .action(() => {
+    console.clear();
+  });
+
 const env = program.command('env').description('Manage environments and variables');
 
 env

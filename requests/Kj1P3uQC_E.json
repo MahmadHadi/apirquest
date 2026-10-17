@@ -1,7 +1,7 @@
 {
   "id": "Kj1P3uQC_E",
-  "title": "demo1",
-  "url": "https://jsonplaceholder.typicode.com/posts/1",
+  "title": "demo1 updated ",
+  "url": "https://jsonplaceholder.typicode.com/posts/:id",
   "method": "GET",
   "headers": [],
   "query": [],
